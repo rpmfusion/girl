@@ -1,5 +1,5 @@
 Name:           girl
-Version:        9.4.0
+Version:        9.5.1
 Release:        1%{?dist}
 Summary:        GNOME Internet Radio Locator program
 License:        GPLv2+
@@ -70,6 +70,9 @@ fi
 %{_datadir}/help/*/%{name}
 
 %changelog
+* Fri Sep 09 2016 Martin Gansser <martinkg@fedoraproject.org> - 9.5.1-1
+- Update to 9.5.1
+
 * Sat Jul 09 2016 Martin Gansser <martinkg@fedoraproject.org> - 9.4.0-1
 - Update to 9.4.0
 

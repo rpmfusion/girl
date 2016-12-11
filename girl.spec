@@ -1,5 +1,5 @@
 Name:           girl
-Version:        9.5.2
+Version:        9.6.0
 Release:        1%{?dist}
 Summary:        GNOME Internet Radio Locator program
 License:        GPLv2+
@@ -16,7 +16,8 @@ BuildRequires:  intltool
 BuildRequires:  itstool
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
-Requires:       totem >= 3.10.1
+BuildRequires:  gstreamer-devel
+Requires:       gstreamer1 >= 1.8.3
 Requires:       streamripper >= 1.64.6
 
 %description
@@ -70,6 +71,12 @@ fi
 %{_datadir}/help/*/%{name}
 
 %changelog
+* Sun Dec 11 2016 Martin Gansser <martinkg@fedoraproject.org> - 9.6.0-1
+- Update to 9.6.0
+- Remove dependency on totem
+- Add BR gstreamer-devel
+- Add Requires gstreamer1
+
 * Fri Oct 07 2016 Martin Gansser <martinkg@fedoraproject.org> - 9.5.2-1
 - Update to 9.5.2
 

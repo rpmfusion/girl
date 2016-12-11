@@ -17,6 +17,7 @@ BuildRequires:  itstool
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
 BuildRequires:  gstreamer-devel
+BuildRequires:  gstreamer-plugins-base-devel
 Requires:       gstreamer1 >= 1.8.3
 Requires:       streamripper >= 1.64.6
 

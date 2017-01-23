@@ -1,5 +1,5 @@
 Name:           girl
-Version:        9.6.0
+Version:        9.7.0
 Release:        1%{?dist}
 Summary:        GNOME Internet Radio Locator program
 License:        GPLv2+
@@ -72,6 +72,9 @@ fi
 %{_datadir}/help/*/%{name}
 
 %changelog
+* Mon Jan 23 2017 Martin Gansser <martinkg@fedoraproject.org> - 9.7.0-1
+- Update to 9.7.0
+
 * Sun Dec 11 2016 Martin Gansser <martinkg@fedoraproject.org> - 9.6.0-1
 - Update to 9.6.0
 - Remove dependency on totem

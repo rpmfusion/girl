@@ -16,9 +16,11 @@ BuildRequires:  intltool
 BuildRequires:  itstool
 BuildRequires:  libappstream-glib
 BuildRequires:  desktop-file-utils
-BuildRequires:  gstreamer-devel
-BuildRequires:  gstreamer-plugins-base-devel
+BuildRequires:  gstreamer1-devel
+BuildRequires:  gstreamer1-plugins-base-devel
+BuildRequires:  gstreamer1-plugins-bad-free-devel
 Requires:       gstreamer1 >= 1.8.3
+Requires:       gstreamer1-plugins-ugly >= 1.8.3
 Requires:       streamripper >= 1.64.6
 
 %description
@@ -74,6 +76,9 @@ fi
 %changelog
 * Mon Jan 23 2017 Martin Gansser <martinkg@fedoraproject.org> - 9.7.0-1
 - Update to 9.7.0
+- Changed BR gstreamer-devel to gstreamer1-devel
+- Add BR gstreamer1-plugins-bad-free-devel
+- Add RR gstreamer1-plugins-ugly >= 1.8.3
 
 * Sun Dec 11 2016 Martin Gansser <martinkg@fedoraproject.org> - 9.6.0-1
 - Update to 9.6.0

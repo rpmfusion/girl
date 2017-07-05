@@ -1,5 +1,5 @@
 Name:           girl
-Version:        9.9.1
+Version:        10.0.0
 Release:        1%{?dist}
 Summary:        GNOME Internet Radio Locator program
 License:        GPLv2+

@@ -1,6 +1,6 @@
 Name:           girl
 Version:        10.0.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GNOME Internet Radio Locator program
 License:        GPLv2+
 URL:            http://people.gnome.org/~ole/girl
@@ -74,6 +74,9 @@ fi
 %{_datadir}/help/*/%{name}
 
 %changelog
+* Thu Aug 31 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 10.0.0-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
+
 * Wed Jul 05 2017 Martin Gansser <martinkg@fedoraproject.org> - 10.0.0-2
 - Rebuild
 

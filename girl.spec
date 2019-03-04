@@ -12,6 +12,7 @@ BuildRequires:  libgnome-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  gnome-vfs2-devel
 BuildRequires:  libgnomeui-devel
+BuildRequires:  gcc
 BuildRequires:  intltool
 BuildRequires:  itstool
 BuildRequires:  libappstream-glib

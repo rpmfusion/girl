@@ -1,10 +1,9 @@
 Name:           girl
 Version:        10.0.0
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        GNOME Internet Radio Locator program
 License:        GPLv2+
 URL:            http://people.gnome.org/~ole/girl
-Group:          Applications/Internet
 Source:         http://people.gnome.org/~ole/%{name}/%{name}-%{version}.tar.xz
 
 BuildRequires:  gtk2-devel
@@ -40,6 +39,7 @@ Enjoy Internet Radio.
 
 %build
 %configure --with-recording --disable-silent-rules
+%make_build
 
 %install
 %make_install
@@ -48,20 +48,6 @@ Enjoy Internet Radio.
 %check
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/%{name}.appdata.xml
 desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
-
-%post
-/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-/usr/bin/update-desktop-database &> /dev/null || :
-
-%postun
-if [ $1 -eq 0 ] ; then
-    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-fi
-/usr/bin/update-desktop-database &> /dev/null || :
-
-%posttrans
-/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %files -f %{name}.lang
 %doc AUTHORS LETTER NEWS README TODO VERSION YP-DIRS ChangeLog
@@ -72,9 +58,14 @@ fi
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
 %{_mandir}/man1/%{name}.1*
-%{_datadir}/help/*/%{name}
+%{_datadir}/help/*/%{name}/
 
 %changelog
+* Fri May 03 2019 Leigh Scott <leigh123linux@gmail.com> - 10.0.0-7
+- Rebuild for new gstreamer1 version
+- Remove Group tag
+- Remove scriptlets
+
 * Mon Mar 04 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 10.0.0-6
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 

@@ -1,6 +1,6 @@
 Name:           girl
 Version:        10.0.0
-Release:        7%{?dist}
+Release:        8%{?dist}
 Summary:        GNOME Internet Radio Locator program
 License:        GPLv2+
 URL:            http://people.gnome.org/~ole/girl
@@ -61,6 +61,9 @@ desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
 %{_datadir}/help/*/%{name}/
 
 %changelog
+* Fri Aug 09 2019 RPM Fusion Release Engineering <leigh123linux@gmail.com> - 10.0.0-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Fri May 03 2019 Leigh Scott <leigh123linux@gmail.com> - 10.0.0-7
 - Rebuild for new gstreamer1 version
 - Remove Group tag

@@ -1,3 +1,5 @@
+%define _legacy_common_support 1
+
 Name:           girl
 Version:        10.0.0
 Release:        10%{?dist}

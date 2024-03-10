@@ -1,0 +1,16 @@
+--- a/src/gnome-internet-radio-locator-location.orig.c	2021-07-22 21:22:28.000000000 +0200
++++ b/src/gnome-internet-radio-locator-location.c	2024-03-10 16:15:13.254297263 +0100
+@@ -19,6 +19,13 @@
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  */
++ 
++#if defined __GNUC__ && __GNUC__ >= 14
++#pragma GCC diagnostic warning "-Wimplicit-function-declaration"
++#pragma GCC diagnostic warning "-Wincompatible-pointer-types"
++#pragma GCC diagnostic warning "-Wint-conversion"
++#pragma GCC diagnostic warning "-Wreturn-mismatch"
++#endif
+ 
+ #include <config.h>
+ #include <gtk/gtk.h>

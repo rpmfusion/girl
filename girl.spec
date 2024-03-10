@@ -1,12 +1,18 @@
-%define _legacy_common_support 1
-
 Name:           girl
-Version:        10.0.0
-Release:        16%{?dist}
+Version:        12.0.1
+Release:        1%{?dist}
 Summary:        GNOME Internet Radio Locator program
-License:        GPLv2+
-URL:            http://people.gnome.org/~ole/girl
-Source:         http://people.gnome.org/~ole/%{name}/%{name}-%{version}.tar.xz
+
+# src/gnome-internet-radio-locator-markers.c: GNU General Public License v3.0 or later and/or GNU Lesser General Public License v2.1 or later
+# src/gnome-internet-radio-locator-markers.h: GNU General Public License v3.0 or later and/or GNU Lesser General Public License v2.1 or later
+License:        GPL-2.0-or-later AND GPL-3.0-or-later AND (GPL-3.0-or-later OR LGPL-2.1-or-later)
+URL:            https://github.com/GNOME/gnome-internet-radio-locator
+Source0:        https://github.com/GNOME/gnome-internet-radio-locator/archive/refs/tags/%{version}/gnome-internet-radio-locator-%{version}.tar.gz
+
+# These aren't real fixes (waiting upstream for this)
+# Just a way to accommodate C code generators.
+# See https://gcc.gnu.org/gcc-14/porting_to.html
+Patch0:         %{name}-gcc14.patch
 
 BuildRequires:  gtk2-devel
 BuildRequires:  libgnome-devel
@@ -21,9 +27,13 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  gstreamer1-devel
 BuildRequires:  gstreamer1-plugins-base-devel
 BuildRequires:  gstreamer1-plugins-bad-free-devel
-Requires:       gstreamer1 >= 1.8.3
-Requires:       gstreamer1-plugins-ugly >= 1.8.3
-Requires:       streamripper >= 1.64.6
+BuildRequires:  pkgconfig(champlain-gtk-0.12)
+BuildRequires:  pkgconfig(geocode-glib-2.0)
+BuildRequires:  pkgconfig(geoclue-2.0)
+BuildRequires:  pkgconfig(libgeoclue-2.0)
+Requires:       gstreamer1%{?_isa} >= 1.8.3
+Requires:       gstreamer1-plugins-ugly%{?_isa} >= 1.8.3
+Requires:       streamripper%{?_isa} >= 1.64.6
 
 %description
 GIRL is a GNOME Internet Radio Locator program that allows the user
@@ -37,7 +47,11 @@ streamripper for recording.
 Enjoy Internet Radio.
 
 %prep
-%setup -q
+%autosetup -n gnome-internet-radio-locator-%{version} -p1
+
+# In Fedora, "geocode-glib > 3.20" has an api version 2.0
+sed -e 's|geocode-glib-1.0|geocode-glib-2.0|' -i configure.ac
+autoreconf -ivf
 
 %build
 %configure --with-recording --disable-silent-rules
@@ -45,24 +59,27 @@ Enjoy Internet Radio.
 
 %install
 %make_install
-%find_lang %{name} --with-man
+%find_lang gnome-internet-radio-locator
+%find_lang gnome-internet-radio-locator --with-man
 
 %check
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/%{name}.appdata.xml
-desktop-file-validate %{buildroot}/%{_datadir}/applications/%{name}.desktop
+appstream-util validate-relax --nonet %{buildroot}%{_metainfodir}/gnome-internet-radio-locator.appdata.xml
+desktop-file-validate %{buildroot}%{_datadir}/applications/gnome-internet-radio-locator.desktop
 
-%files -f %{name}.lang
-%doc AUTHORS LETTER NEWS README TODO VERSION YP-DIRS ChangeLog
+%files -f gnome-internet-radio-locator.lang
+%doc AUTHORS GEOLOCATION BROADCAST NEWS README
 %license COPYING
-%{_bindir}/%{name}
-%{_datadir}/%{name}/
-%{_datadir}/appdata/%{name}.appdata.xml
-%{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/*/apps/%{name}.png
-%{_mandir}/man1/%{name}.1*
-%{_datadir}/help/*/%{name}/
+%{_bindir}/gnome-internet-radio-locator
+%{_datadir}/gnome-internet-radio-locator/
+%{_metainfodir}/gnome-internet-radio-locator.appdata.xml
+%{_datadir}/applications/gnome-internet-radio-locator.desktop
+%{_datadir}/icons/hicolor/*/apps/gnome-internet-radio-locator.png
+%{_mandir}/man1/gnome-internet-radio-locator.1*
 
 %changelog
+* Sun Mar 10 2024 Antonio Trande <sagitter@fedoraproject.org> - 12.0.1-1
+- Release 12.0.1
+
 * Sat Feb 03 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 10.0.0-16
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 

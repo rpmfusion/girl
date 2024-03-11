@@ -1,6 +1,6 @@
 Name:           girl
 Version:        12.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        GNOME Internet Radio Locator program
 
 # src/gnome-internet-radio-locator-markers.c: GNU General Public License v3.0 or later and/or GNU Lesser General Public License v2.1 or later
@@ -36,18 +36,17 @@ BuildRequires:  pkgconfig(geoclue-2.0)
 BuildRequires:  pkgconfig(libgeoclue-2.0)
 Requires:       gstreamer1%{?_isa} >= 1.8.3
 Requires:       gstreamer1-plugins-ugly%{?_isa} >= 1.8.3
-Requires:       streamripper%{?_isa} >= 1.64.6
 
 %description
-GIRL is a GNOME Internet Radio Locator program that allows the user
-to easily find and record live radio programs on radio broadcasters
-on the Internet.
+GNOME Internet Radio Locator is a Free Software program that allows
+you to easily locate and listen to Free Internet Radio stations by
+broadcasters on the Internet with the help of map and text search.
 
-GIRL is developed on the GNOME platform and it requires at least
-one audio player such as Totem to be installed for playback and
-streamripper for recording.
+GNOME Internet Radio Locator is developed on the GNOME desktop
+platform with GNOME Maps, libchamplain and geocode-lib and it
+requires gstreamer 1.0 for audio playback.
 
-Enjoy Internet Radio.
+Enjoy Free Internet Radio.
 
 %prep
 %autosetup -n gnome-internet-radio-locator-%{version} -p1
@@ -80,6 +79,10 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/gnome-internet-radio-
 %{_mandir}/man1/gnome-internet-radio-locator.1*
 
 %changelog
+* Mon Mar 11 2024 Dominik Mierzejewski <dominik@greysector.net> - 12.0.1-2
+- no longer requires streamripper, so drop all references to it
+- update description
+
 * Sun Mar 10 2024 Antonio Trande <sagitter@fedoraproject.org> - 12.0.1-1
 - Release 12.0.1
 

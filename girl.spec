@@ -1,6 +1,6 @@
 Name:           girl
 Version:        12.0.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        GNOME Internet Radio Locator program
 
 # src/gnome-internet-radio-locator-markers.c: GNU General Public License v3.0 or later and/or GNU Lesser General Public License v2.1 or later
@@ -79,6 +79,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/gnome-internet-radio-
 %{_mandir}/man1/gnome-internet-radio-locator.1*
 
 %changelog
+* Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 12.0.1-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
+
 * Mon Mar 11 2024 Dominik Mierzejewski <dominik@greysector.net> - 12.0.1-2
 - no longer requires streamripper, so drop all references to it
 - update description
